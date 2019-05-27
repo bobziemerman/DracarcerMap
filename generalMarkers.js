@@ -1,44 +1,48 @@
 /*
- * Blue: TODO
- * Red: Monster
- * Green: TODO
+ * Blue: People
+ * Red: Monsters
+ * Green: Party
  * Orange: TODO
  * Yellow: TODO
  * Purple: TODO
  * Grey: City/town
- * Black: Capital
+ * Black: TODO
  */
 
 const generalMarkers = [
+//Qurea
 {
-x:'755',
-y:'264',
-color:'black',
-text:"Archerald <br/> Capital of Qurea"
+x:'487',
+y:'312',
+color:'grey',
+history:'2',
+text:"<b>Monitum</b> <br/> Wrakarr research outpost"
 },
+
+
+//Neeru
+
+//Istovia
+
+//Hartland
 {
-x:'760',
-y:'238',
-color:'black',
-text:"Akvo <br/> Capital of Neeru"
+x:'661',
+y:'407',
+color:'grey',
+history:'4',
+text:"<b>Kamidryma</b> <br/> Arcane academy"
 },
+
+
+//Evedale
+
+//Anschluss
 {
-x:'457',
-y:'660',
-color:'black',
-text:"Brun <br/> Capital of Istovia"
-},
-{
-x:'625',
-y:'443',
-color:'black',
-text:"Corwald <br/> Capital of Hartland"
-},
-{
-x:'301',
-y:'441',
-color:'black',
-text:"Dracwyn <br/> Capital of Evedale"
+x:'306',
+y:'366',
+color:'red',
+history:'4',
+text:"<b>Behir-infested waters</b>"
 },
 
 ]
