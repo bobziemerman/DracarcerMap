@@ -7,7 +7,7 @@ var admin = (window.location.href.indexOf('admin') > -1)
 
 var map = L.map('map', {
   crs: L.CRS.Simple,
-  maxZoom: 4
+  maxZoom: 5
 });
 var markers = new L.LayerGroup().addTo(map)
 
@@ -28,7 +28,7 @@ function renderMarkers(){
   
   //Only render if their history mod is high enough (if relevant)
   generalMarkers.map(function(marker){
-    if(admin || !marker.history || marker.history <= historyMod) {
+    if(admin || !marker.history || parseInt(marker.history) <= parseInt(historyMod)) {
       var popup = L.popup({'closeButton':false}).setContent(marker.text)
       L.marker(xy(marker.x, marker.y), {icon: icons[marker.color]}).addTo(markers).bindPopup(popup)
     }
@@ -64,12 +64,13 @@ var legend = L.control({position: 'topright'});
 legend.onAdd = function (map) {
   var div = L.DomUtil.create('div', 'info legend');
   div.innerHTML = 
-    //'<i style="background-color: grey"></i> Capital'+'<br/>'+
-    '<div><i style="background-color: #CCC"></i> City/town</div>'+
+    '<div><i style="background-color: #CCC"></i> Location</div>'+
     '<div><i style="background-color: #e24646"></i> Creature(s)</div>'+
     '<div><i style="background-color: #4589f7"></i> Person(s)</div>'+
+    '<div><i style="background-color: #952bad"></i> Object</div>'+
+    '<div><i style="background-color: #ede06d"></i> Event</div>'+
     (urlVars['party']?'<div><i style="background-color: #00d60a"></i> Party history</div>':'')+
-    '<br/>History mod: +<input type="number" class="history" value="0" onchange="historyChange(this.value)" />'
+    '<br/>History mod: +<input type="number" class="history" value="0" min="0" onchange="historyChange(this.value)" />'
 
   return div;
 };

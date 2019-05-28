@@ -3,9 +3,9 @@
  * Red: Monster
  * Green: Party
  * Orange: TODO
- * Yellow: TODO
- * Purple: TODO
- * Grey: City/town
+ * Yellow: Event
+ * Purple: Object
+ * Grey: Location
  * Black: TODO
  */
 
@@ -79,7 +79,7 @@ text:'<b>Abandoned town</b> <br/> Reinforced chapel'
 {
 x:'306',
 y:'366',
-text:"<b>Behir endounter</b>"
+text:"<b>Behir encounter</b>"
 },
 {
 x:'324',
