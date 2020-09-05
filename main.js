@@ -9,6 +9,7 @@ var map = L.map('map', {
   crs: L.CRS.Simple,
   maxZoom: 5
 });
+map.doubleClickZoom.disable()
 var markers = new L.LayerGroup().addTo(map)
 
 var yx = L.latLng;
@@ -23,16 +24,23 @@ var bounds = [xy(0, 0), xy(1000, 1000)];
 var historyMod = 0
 
 
-function renderMarkers(){
+function renderGeneralMarker(marker){
+  if(admin || !marker.history || parseInt(marker.history) <= parseInt(historyMod)) {
+    var popup = L.popup({'closeButton':false}).setContent(marker.text)
+    L.marker(xy(marker.x, marker.y), {icon: icons[marker.color]}).addTo(markers).bindPopup(popup)
+  }
+}
+
+function renderMarkerGroups(){
   markers.clearLayers();
   
   //Only render if their history mod is high enough (if relevant)
-  generalMarkers.map(function(marker){
-    if(admin || !marker.history || parseInt(marker.history) <= parseInt(historyMod)) {
-      var popup = L.popup({'closeButton':false}).setContent(marker.text)
-      L.marker(xy(marker.x, marker.y), {icon: icons[marker.color]}).addTo(markers).bindPopup(popup)
-    }
-  })
+  anschlussMarkers.map(function(marker){ renderGeneralMarker(marker) })
+  evedaleMarkers.map(function(marker){ renderGeneralMarker(marker) })
+  hartlandMarkers.map(function(marker){ renderGeneralMarker(marker) })
+  istoviaMarkers.map(function(marker){ renderGeneralMarker(marker) })
+  neeruMarkers.map(function(marker){ renderGeneralMarker(marker) })
+  qureaMarkers.map(function(marker){ renderGeneralMarker(marker) })
 
   //Only render these if 'admin' is in the url
   if(admin){
@@ -50,13 +58,13 @@ function renderMarkers(){
 
   }
 }
-renderMarkers()
+renderMarkerGroups()
 
 
 
 function historyChange(value) {
   historyMod = value
-  renderMarkers();
+  renderMarkerGroups();
 }
 
 //Add a legend
